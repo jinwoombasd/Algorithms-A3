@@ -113,32 +113,58 @@ public class SortableArray {
 
 		int medianIndex = nElems / 2;
 
-		if (nElems %2 == 1) {
+		if (nElems % 2 == 1) {
 
+			while (true) {
+				long pivot = array[right];
+				int partition = partitionIt(left, right, pivot);
 
-		
+				if (partition == medianIndex) {
 
-		while (true) {
-			long pivot = array[right];
-			int partition = partitionIt(left, right, pivot);
-
-			
-
-			if (partition == medianIndex) {
-				if (size % 2 == 0) {
-					return (array[partition] + array[partition - 1]) / 2.0f;
-				} else {
 					return array[partition];
+
+				} else if (partition < medianIndex) {
+					left = partition + 1;
+				} else {
+					right = partition - 1;
 				}
-			} else if (partition < medianIndex) {
-				left = partition + 1;
-			} else {
-				right = partition - 1;
+			}
+
+		}
+		else {
+
+			long val1;
+			while (true) {
+				long pivot = array[right];
+				int partition = partitionIt(left, right, pivot);
+
+				if (partition == medianIndex) {
+
+					val1 = array[partition];
+					break;
+
+				} else if (partition < medianIndex) {
+					left = partition + 1;
+				} else {
+					right = partition - 1;
+				}
+			}
+			while (true) {
+				long pivot = array[right];
+				int partition = partitionIt(left, right, pivot);
+
+				if (partition == medianIndex - 1) {
+
+					return (val1 + array[partition] ) / 2;
+
+				} else if (partition < medianIndex) {
+					left = partition + 1;
+				} else {
+					right = partition - 1;
+				}
 			}
 		}
-
-	}
-	return 0;
+		
 	}
 
 }
