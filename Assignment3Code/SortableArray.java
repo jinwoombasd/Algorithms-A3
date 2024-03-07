@@ -149,6 +149,7 @@ public class SortableArray {
 					right = partition - 1;
 				}
 			}
+
 			while (true) {
 				long pivot = array[right];
 				int partition = partitionIt(left, right, pivot);
@@ -162,7 +163,7 @@ public class SortableArray {
 				} else {
 					right = partition - 1;
 				}
-			}
+			} 
 		}
 		
 	}
